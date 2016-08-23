@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>weather of free</title>
+	<link rel="stylesheet" href="css/public.css">
+	<script src="js/index.js"></script>
+	<script src="js/tools_2.js"></script>
+	<script>
+	window.onload = function(){
+		//运行一次 页面有数据
+		$.ajax();
+		$.dataShow(document.getElementById('dayShow'));
+		var cityLocation = document.getElementById('cityName');
+		cityLocation.innerHTML = '当前地点：'+'上海'; 
+		document.getElementById('citySec-btn').onclick = function(){
+			var clearList = document.getElementById('calendar').getElementsByTagName('li')
+			for(var i = 0;i < clearList.length;i++){
+				clearList[i].innerHTML = '';
+			}
+			var cityName = document.getElementById('cityChg').value;
+			if($.isChn(cityName)){
+				var errSpan = document.getElementById('errorTip');
+				errSpan.style.display = 'block';
+				document.getElementById('cityChg').value = '';
+				setTimeout(function(){
+					errSpan.style.display = 'none';
+				}, 1000);
+				
+			}else{
+				$.ajax(cityName);
+				cityLocation.innerHTML = '当前地点：'+ cityName;
+			}
+
+				
+				
+			
+			
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	}
+	</script>
+</head>
+<body>
+	<div class="scollfixed" id="weatherShow"></div>
+	<div class="warp">
+		<div class="location">
+			<input type="text" id="cityChg" placeholder="请输入城市名">
+			<a id="citySec-btn">查看天气</a>
+			<span id="errorTip" class="error">请输入全中文城市名</span>
+			<div class="city-name">
+				<div id="cityName" class="city"></div>
+				<span class="date" id="dayShow"></span>   <!-- 使用new date去获得一部分 -->
+			</div>
+		</div>
+		<div class="brief-whr" id="briefShow">
+			<div class="air-whr" id="temperature">
+				
+			</div>
+			<div class="whr-class" id="whrClass">  <!--  晴 雨  云 等等 -->
+				
+			</div>
+			<div class="temp-class" id="tempClass">
+				<span class="temp-high"></span>
+				<span class="temp-low"></span>
+			</div>
+			<div class="wind" id="windShow">
+				<span class="wind-power"></span>
+				<span class="wind-direction"></span>
+			</div>			
+		</div>
+		<div class="tips-whr" id="goodTips">
+			<span class="cold-index">：<i id="aqi"></i></span>
+			<em class="cold-tips"></em>
+		</div>
+		<div class="calendar-whr" id="whrList">
+			<i class="p-l"><img src="images/i_point-l.png" alt=""></i>
+			<i class="p-r"><img src="images/i_point-r.png" alt=""></i>
+			<ul id="calendar">
+				<li>
+				</li>
+				<li class="today">
+					
+				</li>
+				<li>
+					
+				</li>
+				<li>
+					
+				</li>
+				<li>
+					
+				</li>
+				<li>
+					
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="location" class="head-Location">
+		
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
